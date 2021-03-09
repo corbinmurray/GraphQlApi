@@ -1,0 +1,8 @@
+{
+  "user": "postgres",
+  "password": "dbpassword",
+  "host": "localhost",
+  "port": 5432,
+  "database": "chirpstack_as_events",
+  "dialect": "postgres"
+}

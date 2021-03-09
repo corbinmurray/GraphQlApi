@@ -1,7 +1,5 @@
+const Query = {
+  hello: () => "Hello!",
+};
 
-const Query = { 
-  hello: () => "Hello!"
-}
-
-
-export {Query}
+export { Query };

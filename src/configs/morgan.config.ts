@@ -1,4 +1,3 @@
-
 import morgan, { StreamOptions } from "morgan";
 import { getLogger } from "./winston.config";
 
