@@ -1,3 +1,21 @@
 type Query {
-  hello: String!
+  getAllData(device_eui: String!): DeviceUp
+}
+
+type DeviceUp {
+  id: ID
+  received_at: String
+  dev_eui: String
+  device_name: String
+  application_id: Int
+  application_name: String
+  frequency: Int
+  dr: Int
+  adr: Boolean
+  f_cnt: Int
+  f_port: Int
+  tags: String
+  data: String
+  rx_info: String
+  object: String
 }
