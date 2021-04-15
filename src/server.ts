@@ -4,7 +4,9 @@ import path from "path";
 import fs from "fs";
 import { Query } from "./graphql/resolvers/Query";
 import { morganMiddleware } from "./configs/morgan.config";
+import { DateTime } from "./graphql/resolvers/customScalars";
 
+// TODO make this more dynamic for when it gets compiled
 const schemaPath = path.join(
   path.resolve(__dirname),
   "graphql",
@@ -14,6 +16,7 @@ const schemaPath = path.join(
 const typeDefs = fs.readFileSync(schemaPath, "utf-8");
 const resolvers = {
   Query,
+  DateTime,
 };
 const app = express();
 const server = new ApolloServer({ typeDefs, resolvers });
