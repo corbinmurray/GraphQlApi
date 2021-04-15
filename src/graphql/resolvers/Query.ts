@@ -1,24 +1,50 @@
+import { Op } from "sequelize";
+import { IGetAllDataArguments } from "../../interfaces/GraphQLRequestArguments/IGetAllDataArguments";
+import { IGetDataInRangeArguments } from "../../interfaces/GraphQLRequestArguments/IGetDataInRangeArguments";
 import { DeviceUp } from "../../models/DeviceUp";
 
 const Query = {
   getAllData: getAllDataHandler,
-  getDataInRange: getAllDataHandler,
+  getDataInRange: getDataInRangeHandler,
 };
 
-async function getAllDataHandler(parent, args, context, info) {
-  const dev_eui: string = args.dev_eui;
+// TODO: Add validation to device_name arguments
+// TODO: Add try-catch with logging
 
+async function getAllDataHandler(
+  parent,
+  args: IGetAllDataArguments,
+  context,
+  info
+) {
   const deviceUpModels = await DeviceUp.findAll({
-    where: { dev_eui: `\\x${dev_eui}` },
+    where: { device_name: args.device_name },
   });
 
   return deviceUpModels.map((model) => model.toJSON());
 }
 
-async function getDataInRangeHandler(parent, args, context, info) {
-  console.log(args);
+async function getDataInRangeHandler(
+  parent,
+  args: IGetDataInRangeArguments,
+  context,
+  info
+) {
+  const deviceUpModels = await DeviceUp.findAll({
+    where: {
+      device_name: args.device_name,
+      received_at: {
+        [Op.gte]: args.start_date_utc,
+        [Op.lte]: args.end_date_utc,
+      },
+    },
+  });
 
-  return null;
+  if (deviceUpModels.length === 0) {
+    return null;
+  }
+
+  return deviceUpModels.map((model) => model.toJSON());
 }
 
 export { Query };

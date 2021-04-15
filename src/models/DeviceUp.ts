@@ -19,7 +19,7 @@ const DeviceUp = sequelize.define(
       type: DataTypes.DATE,
     },
     dev_eui: {
-      type: DataTypes.STRING(18),
+      type: DataTypes.BLOB,
     },
     device_name: { type: DataTypes.STRING(100) },
     application_id: {
@@ -29,7 +29,7 @@ const DeviceUp = sequelize.define(
       type: DataTypes.STRING(100),
     },
     frequency: {
-      type: DataTypes.BLOB,
+      type: DataTypes.BIGINT,
     },
     dr: {
       type: DataTypes.SMALLINT,
@@ -63,61 +63,5 @@ const DeviceUp = sequelize.define(
     updatedAt: false,
   }
 );
-
-// DeviceUp.init(
-//   {
-//     id: {
-//       type: DataTypes.UUID,
-//       primaryKey: true,
-//     },
-//     received_at: {
-//       type: DataTypes.DATE,
-//     },
-//     dev_eui: {
-//       type: DataTypes.STRING(18),
-//     },
-//     device_name: { type: DataTypes.STRING(100) },
-//     application_id: {
-//       type: DataTypes.BIGINT,
-//     },
-//     application_name: {
-//       type: DataTypes.STRING(100),
-//     },
-//     frequency: {
-//       type: DataTypes.BLOB,
-//     },
-//     dr: {
-//       type: DataTypes.SMALLINT,
-//     },
-//     adr: {
-//       type: DataTypes.BOOLEAN,
-//     },
-//     f_cnt: {
-//       type: DataTypes.BIGINT,
-//     },
-//     f_port: {
-//       type: DataTypes.SMALLINT,
-//     },
-//     tags: {
-//       type: DataTypes.HSTORE,
-//     },
-//     data: {
-//       type: DataTypes.BLOB,
-//     },
-//     rx_info: {
-//       type: DataTypes.JSONB,
-//     },
-//     object: {
-//       type: DataTypes.JSONB,
-//     },
-//   },
-//   {
-//     sequelize,
-//     modelName: "DeviceUp",
-//     tableName: "device_up",
-//     createdAt: false,
-//     updatedAt: false,
-//   }
-// );
 
 export { DeviceUp };

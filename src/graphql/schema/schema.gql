@@ -1,15 +1,16 @@
 
 scalar DateTime
+scalar BufferType
 
 type Query {
-  getAllData(dev_eui: String!): [DeviceUp]
-  getDataInRange(dev_eui: String!, start_date_utc: DateTime!, end_date_utc: DateTime!): [DeviceUp]
+  getAllData(device_name: String!): [DeviceUp]
+  getDataInRange(device_name: String!, start_date_utc: DateTime!, end_date_utc: DateTime!): [DeviceUp]
 }
 
 type DeviceUp {
   id: ID
   received_at: String
-  dev_eui: String
+  dev_eui: BufferType
   device_name: String
   application_id: Int
   application_name: String
@@ -19,7 +20,7 @@ type DeviceUp {
   f_cnt: Int
   f_port: Int
   tags: String
-  data: String
-  rx_info: String
-  object: String
+  data: BufferType
+  rx_info: BufferType
+  object: BufferType
 }
