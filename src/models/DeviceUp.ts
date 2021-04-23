@@ -1,11 +1,9 @@
-import { Model, DataTypes } from "sequelize";
+import { DataTypes } from "sequelize";
 import { getSequelize } from "../configs/sequelize.config";
 
 const sequelize = getSequelize();
 
-// class DeviceUp extends Model {}
-
-// received_at is in ISO 8601 format
+// received_at is in ISO-8601 format
 // https://en.wikipedia.org/wiki/ISO_8601
 
 const DeviceUp = sequelize.define(

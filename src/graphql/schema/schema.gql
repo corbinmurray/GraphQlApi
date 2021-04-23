@@ -9,7 +9,7 @@ type Query {
 
 type DeviceUp {
   id: ID
-  received_at: String
+  received_at: DateTime
   dev_eui: BufferType
   device_name: String
   application_id: Int

@@ -5,8 +5,8 @@ import fs from "fs";
 import { Query } from "./graphql/resolvers/Query";
 import { morganMiddleware } from "./configs/morgan.config";
 import { DateTime } from "./graphql/resolvers/customScalars";
+import { authorizationMiddleware } from "./configs/authorization.config";
 
-// TODO make this more dynamic for when it gets compiled
 const schemaPath = path.join(
   path.resolve(__dirname),
   "graphql",
@@ -18,11 +18,14 @@ const resolvers = {
   Query,
   DateTime,
 };
+
 const app = express();
 const server = new ApolloServer({ typeDefs, resolvers });
 
-server.applyMiddleware({ app });
 app.use(morganMiddleware);
+app.use(authorizationMiddleware);
+
+server.applyMiddleware({ app });
 
 app.listen(9876, () =>
   console.log("Server is listening at http://localhost:9876/graphql")

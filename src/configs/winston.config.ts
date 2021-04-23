@@ -30,6 +30,7 @@ const format = winston.format.combine(
   )
 );
 
+// TODO: Find a good place for all of the logs to reside
 const transports = [
   new winston.transports.Console({
     format: winston.format.colorize({ all: true, colors: colors }),
